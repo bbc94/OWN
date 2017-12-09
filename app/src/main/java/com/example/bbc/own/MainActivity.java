@@ -30,12 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CheckBox c14 ;
     CheckBox c15 ;
     Button b;
-    int good[] = new int[3];
-    int bad[] = new int[3];
+    static int good[] = new int[3];
+    static int bad[] = new int[3];
     int select[]= new int[6];
-    int count=0;
-
-    ArrayList<Integer> in = new ArrayList<>(6);
+    static ArrayList<Integer> in = new ArrayList<>(6);
+    static int score=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +102,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(c13.isChecked() == true) in.add(13);
             if(c14.isChecked() == true) in.add(14);
             if(c15.isChecked() == true) in.add(15);
+
+            for(int i =0;i<6;i++){
+                for (int j =0;j<3;j++){
+                    if(in.get(i)==good[j]){
+                        score+=10;
+                    }
+                    if(in.get(i)==bad[j]){
+                        score+=1;
+                    }
+                }
+            }
             startActivity(new Intent(MainActivity.this, ResultActivity.class));
     }
 }
